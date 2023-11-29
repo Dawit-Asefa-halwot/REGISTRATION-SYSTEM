@@ -1,3 +1,5 @@
+-- creating database--
+
 CREATE DATABASE registrationdb;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
