@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class RegistrationSystem {
 
-    // Database connection parameters
+    // creating Database connection
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/registrationdb";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "@David80192887";
@@ -13,7 +13,7 @@ public class RegistrationSystem {
 
         System.out.println("Registration System");
 
-        // Get user input
+        // Get user input to enter their name and password
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
 
@@ -26,13 +26,11 @@ public class RegistrationSystem {
         // Register the user
         boolean isRegistered = registerUser(username, password, semester);
 
-        // Display the result
+        // Display the result after the registration
         if (isRegistered) {
             System.out.println("Registration successful!");
 
-            // Retrieve and display user data
-           /* System.out.println("User Data:");
-            displayUserData(username);*/
+            
         } else {
             System.out.println("Registration failed. Please try again.");
         }
@@ -51,7 +49,7 @@ public class RegistrationSystem {
             displayUserData(searchUsername);
             displayAllUsers();
         }
-        // Close the scanner
+        // Close the scanner after displaying the database result
         scanner.close();
     }
 
@@ -72,7 +70,8 @@ public class RegistrationSystem {
             System.out.print("Enter your choice (1-9): ");
             while (!scanner.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a number.");
-                scanner.next(); // consume the invalid input
+                scanner.next();
+                // the above message is displayed if the user does't enter the number to choose the semister
             }
             choice = scanner.nextInt();
         } while (choice < 1 || choice > 9);
@@ -102,7 +101,7 @@ public class RegistrationSystem {
     }
     private static boolean registerUser(String username, String password, String semester) {
         try {
-            // Load the JDBC driver
+            // Load the Java DataBase Connector driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish a connection to the database
@@ -118,7 +117,7 @@ public class RegistrationSystem {
                 // Execute the SQL statement
                 int rowsAffected = preparedStatement.executeUpdate();
 
-                // Return true if registration is successful (1 row affected)
+                // Return true if registration is successful 
                 return rowsAffected > 0;
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -128,7 +127,7 @@ public class RegistrationSystem {
     }
     private static void displayUserData(String username) {
         try {
-            // Load the JDBC driver
+            // Load the Java DataBase Connector driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish a connection to the database
@@ -158,13 +157,13 @@ public class RegistrationSystem {
     }
     private static void displayAllUsers() {
         try {
-            // Load the JDBC driver
+            // Load the Java DataBase Connector driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish a connection to the database
             Connection connection = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
 
-            // Ask if the user wants to sort by username
+            // Ask if the user wants to sort  by username
             System.out.print("Do you want to sort by username or by id?");
             Scanner scanner = new Scanner(System.in);
             String sortByUsername = scanner.nextLine().toLowerCase();
