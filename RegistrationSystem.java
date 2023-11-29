@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class RegistrationSystem {
 
     // creating Database connection
+    // If you want to copy this code make sure that you replace JDBC_URL , DB_USER , DB_PASSWORD with yours
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/registrationdb";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "@David80192887";
